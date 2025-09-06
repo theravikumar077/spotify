@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <title>Ravi's Music App — Single Page</title>
+  <title>Spotify</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Custom overrides */
@@ -64,24 +64,36 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-start pb-28">
   <!-- Container (max width mobile) -->
-  <div class="w-full max-w-md mx-auto px-4 pt-8">
+    <!-- Home Section -->
+  <div id="home" class="w-full max-w-md mx-auto px-4 pt-8">
+
 
     <!-- Top bar: avatar + search + heart -->
-    <div class="flex items-center justify-between mb-6">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="avatar" class="w-full h-full object-cover"/>
-        </div>
-        <div>
-          <div class="text-sm text-white/80">Hi,</div>
-          <div class="text-2xl font-semibold">Ravi</div>
-        </div>
-      </div>
-      <div class="flex gap-3">
-        
-        
-      </div>
+    <div class="flex items-center justify-between mb-6 sticky top-0 bg-black/10 backdrop-blur-md z-50 p-4">
+  <!-- Left: Avatar + Greeting -->
+  <div class="flex items-center gap-3">
+    <div class="w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10">
+      <img src="https://i.pinimg.com/736x/69/78/19/69781905dd57ba144ab71ca4271ab294.jpg" 
+           alt="avatar" 
+           class="w-full h-full object-cover"/>
     </div>
+    <div>
+      <div class="text-sm text-white/80">Good to see you,</div>
+      <div class="text-2xl font-semibold">Ravi</div>
+    </div>
+  </div>
+
+  <!-- Right: Placeholder for buttons/icons -->
+  <div class="flex items-center gap-3">
+    <!-- <button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-white/20 transition">
+      
+    </button>
+    <button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/80 hover:bg-white/20 transition">
+      
+    </button> -->
+  </div>
+</div>
+
 
     <!-- Category pills -->
     <div class="flex gap-3 mb-6">
@@ -129,13 +141,15 @@
    <!-- end container -->
 
  <!-- Bottom Nav -->
-<nav class="fixed left-1/2 transform -translate-x-1/2 bottom-6 w-full max-w-md px-4">
+<nav class="fixed left-1/2 transform -translate-x-1/2 bottom-6 w-full max-w-md px-4 z-[999]">
+
   <div class="backdrop-blur-2xl bg-white/5 border border-white/20 rounded-2xl p-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
     
     <!-- Home (Active) -->
-    <button class="nav-btn active flex-1 mx-1 text-center py-2 rounded-2xl font-semibold text-violet-400 scale-110 transition-all duration-300">
-      <span class="material-symbols-rounded text-[26px]">dashboard</span>
-    </button>
+    <button id="dashboardBtn" class="nav-btn active flex-1 mx-1 text-center py-2 rounded-2xl font-semibold text-violet-400 scale-110 transition-all duration-300">
+  <span class="material-symbols-rounded text-[26px]">dashboard</span>
+</button>
+
 
     <!-- Search -->
     <button id="searchBtn" class="nav-btn flex-1 mx-1 text-center py-2 rounded-2xl text-white/70 hover:text-white transition-all duration-300">
@@ -171,7 +185,7 @@
         </div>
 
         <!-- album art + circular progress -->
-        <div class="flex flex-col items-center gap-4 h-[425px]">
+        <div class="flex flex-col items-center gap-4 h-[340px]">
           <div id="albumWrap" class="rounded-oval overflow-hidden bg-gradient-to-b from-white/6 to-white/3 shadow-2xl w-60 h-60 sm:w-72 sm:h-72
  flex items-end justify-center">
             <img id="albumArtLarge" src="" alt="album art" class="w-full h-full object-cover" />
@@ -184,8 +198,8 @@
           </div>
 
           <!-- circular progress SVG -->
-          <div class="circle-wrap relative flex flex-col items-center justify-center mx-auto">
-  <svg class="w-[150px] h-[150px] -rotate-90" viewBox="0 0 100 100">
+          <div class="circle-wrap relative flex flex-col items-center justify-center  bottom-[20px]">
+  <svg class="w-[100px] h-[100px] -rotate-90" viewBox="0 0 100 100">
     <defs>
       <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
         <stop offset="0%" stop-color="#7c3aed" />
@@ -195,26 +209,35 @@
     <circle cx="50" cy="50" r="44" stroke="#ffffff1a" stroke-width="8" fill="none"></circle>
     <path id="progressPath" d="" stroke="url(#g1)" stroke-width="8" stroke-linecap="round" fill="none"></path>
   </svg>
-  <div id="timeLabel" class="absolute bottom-2 text-center text-sm text-white/80 w-full">00:00</div>
+  <div id="timeLabel" class="absolute bottom-[-5px] text-center text-sm text-white/80 w-full">00:00</div>
 </div>
 
 
         </div>
 
         <!-- controls -->
-        <div class="mt-6 flex items-center justify-center gap-6">
+        <div class="mt-6 flex items-center justify-center gap-6 bottom-[-100px]">
           <button id="shuffleBtn" class="glass-pill w-10 h-10 rounded-full flex items-center justify-center">🔀</button>
-          <button id="prevBtn" class="glass-pill w-12 h-12 rounded-full flex items-center justify-center">⏮</button>
-          <button id="playBtn" class="w-20 h-20 rounded-full bg-white text-black flex items-center justify-center shadow-2xl text-2xl">▶</button>
-          <button id="nextBtn" class="glass-pill w-12 h-12 rounded-full flex items-center justify-center">⏭</button>
+          <button id="prevBtn" class="glass-pill w-12 h-12 rounded-full flex items-center justify-center"><span class="material-symbols-rounded text-white">
+skip_previous
+</span></button>
+          <button id="playBtn" class="w-[60px] h-[60px] rounded-full bg-white text-black flex items-center justify-center shadow-2xl text-2xl"><span class="material-symbols-rounded text-4xl">
+play_arrow
+</span></button>
+          <button id="nextBtn" class="glass-pill w-12 h-12 rounded-full flex items-center justify-center text-white"><span class="material-symbols-rounded text-white">
+skip_next
+</span></button>
           <button id="repeatBtn" class="glass-pill w-10 h-10 rounded-full flex items-center justify-center">🔁</button>
         </div>
 
         <!-- track list inside player -->
-        <div class="mt-6 text-white/80">
-          <div class="font-semibold mb-2">Queue</div>
-          <div id="queueList" class="space-y-2 max-h-28 overflow-auto no-scrollbar pr-2"></div>
-        </div>
+      <!-- track list inside player -->
+<div class="mt-6 text-white/80">
+  <div class="font-semibold mb-2">Queue</div>
+  <!-- yaha max-h ko bada kar diya -->
+  <div id="queueList" class="space-y-2 max-h-60 overflow-auto no-scrollbar pr-2"></div>
+</div>
+
 
       </div>
     </div>
